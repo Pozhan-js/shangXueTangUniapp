@@ -1,0 +1,81 @@
+{
+	// 组件库引入规则
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "谷粒微课"
+			}
+		},
+		{
+			"path": "pages/garden/garden",
+			"style": {
+				"navigationBarTitleText": "谷粒微课"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "谷粒微课"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}
+	],
+	"subPackages": [
+		{
+			"root": "subPages/home",
+			"pages": [
+				{
+					"path": "userInfo/userInfo",
+					"style": {
+						"navigationBarTitleText": "小区公告",
+						"enablePullDownRefresh": true
+					}
+				}
+			]
+		}
+	],
+	"tabBar": {
+		"color": "#a8a5a8",
+		"selectedColor": "#6377F5",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/tabbar/home@2x.png",
+				"selectedIconPath": "static/tabbar/home-checked@2x.png"
+			},
+			{
+				"pagePath": "pages/garden/garden",
+				"text": "课程",
+				"iconPath": "static/tabbar/hairring@2x.png",
+				"selectedIconPath": "static/tabbar/hairring-checked@2x.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "static/tabbar/mine@2x.png",
+				"selectedIconPath": "static/tabbar/mine-checked@2x.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "前端课堂",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
