@@ -38,6 +38,7 @@ const store = new Vuex.Store({
         setToken({ commit }, payload) {
             commit('setToken', payload);
         },
+        
     },
     modules: {},
 });
