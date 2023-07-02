@@ -10,7 +10,10 @@
           />
           <text>QQ登陆</text>
         </button> -->
-        <button class="login_main_type_item" @click="handleLogin('weixin')">
+        <button
+          class="login_main_type_item"
+          @click="handleCLickLoginBtn('weixin')"
+        >
           <image
             src="https://7.idqqimg.com/edu/mobilev2/m-core/a1447893821a2003463b10e7c9b39926.png"
           />
@@ -37,6 +40,7 @@
 </template>
 
 <script>
+import userService from "@/services/user";
 export default {
   data() {
     return {
@@ -44,6 +48,34 @@ export default {
     };
   },
   methods: {
+    // 点击登录按钮 头部注释 ctl + alt + t
+
+    /**
+     * @description:
+     * @param {*} type
+     * @return {*}
+     */
+    handleCLickLoginBtn(type) {
+      if (!this.checked) {
+        return uni.showToast({
+          title: "请已阅读并同意用户协议&隐私声明",
+          icon: "none",
+          position: "bottom",
+        });
+      }
+
+      if (type === "qq") {
+        return uni.showToast({
+          title: "qq登录暂未开放",
+          icon: "none",
+          position: "bottom",
+        });
+      } else if (type === "weixin") {
+        // 调用微信登录接口
+        this.mpWeixinLogin();
+      } else {
+      }
+    },
     /**
      * @description: 请求登陆
      * @param {*} code
@@ -94,9 +126,13 @@ export default {
         console.log(e);
       }
     },
-    // 获取用户信息
+    /**
+     * @description:  获取用户信息
+     * @return {*}
+     */
     async getUserInfo() {
       try {
+        // 获取用户信息请求
         const res = await userService.getLoginInfo();
         console.log("userLogininfo", res);
         if (res.data.item) {
@@ -105,6 +141,7 @@ export default {
           });
           // 需要更新用户信息
           if (!res.data.item.nickname) {
+            // 将用户信息保存至服务器中
             this.updateUserInfo();
           } else {
             this.jump();
@@ -114,7 +151,10 @@ export default {
         console.log(e);
       }
     },
-    // 更新用户信息
+    /**
+     * @description: 更新用户信息
+     * @return {*}
+     */
     async updateUserInfo() {
       try {
         const res = await userService.updateMember({
@@ -137,7 +177,10 @@ export default {
         console.log(e);
       }
     },
-    // 跳转到之前页面
+    /**
+     * @description: 跳转到之前页面
+     * @return {*}
+     */
     jump() {
       uni.showToast({
         title: "登陆成功",
@@ -147,7 +190,10 @@ export default {
         },
       });
     },
-    // 点击同意协议
+    /**
+     * @description: 点击同意协议
+     * @return {*}
+     */
     handleChecked() {
       this.checked = true;
     },
