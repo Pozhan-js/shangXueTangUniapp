@@ -15,7 +15,7 @@
 			}
 		},
 		{
-			"path": "pages/course/course",
+			"path": "pages/course/index",
 			"style": {
 				"navigationBarTitleText": "谷粒微课"
 			}
@@ -59,7 +59,7 @@
 				"selectedIconPath": "static/images/nav/home-on.png"
 			},
 			{
-				"pagePath": "pages/course/course",
+				"pagePath": "pages/course/index",
 				"text": "课程",
 				"iconPath": "static/images/nav/list-off.png",
 				"selectedIconPath": "static/images/nav/list-on.png"

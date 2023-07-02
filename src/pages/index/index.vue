@@ -63,7 +63,7 @@
 <script>
 import { hotCateList, bannerList, courseList } from "../../common/constant";
 import courseService from "../../services/course";
-import backTop from "../../components/back-top/back-top";
+import backTop from "@/components/v-back-top/v-back-top";
 export default {
   data() {
     return {
@@ -89,7 +89,6 @@ export default {
         console.log("e", e);
       }
     },
-
     async getCourseList() {
       try {
         const res = await courseService.indexCourse();
@@ -113,6 +112,13 @@ export default {
         uni.navigateTo({ url: link });
       }
     },
+    //检测·1滚动事件
+    onPageScroll(res) {
+      uni.$emit("onPageScroll", res);
+    },
+  },
+  components: {
+    backTop,
   },
 };
 </script>
