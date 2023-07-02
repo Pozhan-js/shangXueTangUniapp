@@ -1,3 +1,10 @@
+/*
+ * @Author: 朽木白
+ * @Date: 2022-08-22 09:34:58
+ * @LastEditors: Why so serious my dear 854059946@qq.com
+ * @LastEditTime: 2023-07-02 18:41:30
+ * @Description:
+ */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { TOKEN_KEY, USER_KEY } from '@/config/storage-key';
@@ -38,7 +45,33 @@ const store = new Vuex.Store({
         setToken({ commit }, payload) {
             commit('setToken', payload);
         },
-        
+        /**
+         * @description: 判断是否需要跳转登陆
+         * @param {*} context
+         * @param {*} callBack 不需要登陆的回掉函数
+         * @return {*}
+         */
+        goLogin(context, callBack) {
+            if (!this.state.token) {
+                uni.showModal({
+                    title: '提示',
+                    content: '请登录',
+                    success: function (res) {
+                        if (res.confirm) {
+                            uni.navigateTo({
+                                url: '/pages/login/index',
+                            });
+                            uni.clearStorageSync();
+                        } else if (res.cancel) {
+                            console.log('用户不想登陆');
+                        }
+                    },
+                });
+            } else {
+                callBack();
+            }
+        },
+
     },
     modules: {},
 });
